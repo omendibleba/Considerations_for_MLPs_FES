@@ -1,0 +1,84 @@
+
+
+
+# Define name of log file 
+log adp_dpmd_1ns_umb_0.log
+# Model system
+
+
+units	real
+atom_style atomic
+newton on ## off for nequip
+
+read_data ADP.lmp
+
+pair_style	allegro ##nequip
+
+############ For models trained with ab initio level of accuracy (SPC)###########
+pair_coeff      * * ../Model_train_SPC/ADP_SPC_UnivDist_2500.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_UnivDist_5000.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_BoltzDist_2500.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_BoltzDist_5000.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_Unbias_500.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_Unbias_1000.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_Unbias_2500.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_Omin_500.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_Omin_1000.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_Omin_2500.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_CharReg_500.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_CharReg_1000.pth H C N O
+#pair_coeff      * * ../Model_train_SPC/ADP_SPC_CharReg_2500.pth H C N O
+
+
+############ For models trained with classical level of accuracy (CLC)############
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_UnivDist_2500.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_UnivDist_5000.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_BoltzDist_2500.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_BoltzDist_5000.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_Unbias_500.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_Unbias_1000.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_Unbias_2500.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_Omin_500.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_Omin_1000.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_Omin_2500.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_CharReg_500.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_CharReg_1000.pth H C N O
+#pair_coeff      * * ../Model_train_CLC/ADP_CLC_CharReg_2500.pth H C N O
+
+
+
+mass            1 1.00794 # H
+mass            2 12.011  # C 
+mass            3 14.0067 # N
+mass            4 15.9994 # O
+
+
+neighbor 1.0 bin
+neigh_modify delay 5 every 1
+
+timestep        1
+thermo 500
+
+thermo_style    custom step time temp pe ke etotal press density #lx ly lz vol density
+
+velocity all create 300 54323
+fix 1 all nvt/gpu temp 300 300 100
+
+fix pl all plumed plumedfile plumed_MetaD.dat outfile plumed.log
+
+#minimize 0.0 1.0e-8 10000 1000000
+#write_dump all custom output.dump id type x y z fx fy fz
+# Define Dumping 
+#dump 1 all xyz 1000 water255_minimized.xyz
+#dump myDump2 all custom 500 forces.dump id type x y z fx fy fz
+dump Dumpdcd all dcd 1000 ADP_Boltz_CtC.dcd
+#dump mydumpxyz all xyz 5000 traj_nnip.xyz
+
+
+restart 5000000 but_dpmd.restart
+
+
+#run 1500
+run 10000000
+
+

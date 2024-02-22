@@ -1,0 +1,9 @@
+LAMMPS (29 Sep 2021 - Update 2)
+  using 1 OpenMP thread(s) per MPI task
+package gpu 0
+package gpu 1
+
+
+
+# Define name of log file
+log adp_dpmd_1ns_umb_0.log

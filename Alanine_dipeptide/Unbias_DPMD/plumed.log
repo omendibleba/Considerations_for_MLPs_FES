@@ -1,0 +1,37 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.7.2 (git: Unknown) compiled on May 31 2023 at 10:53:10
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /afs/crc.nd.edu/user/o/omendibl/lammps_allegro/build_2/plumed_build-prefix/lib/plumed
+PLUMED: For installed feature, see /afs/crc.nd.edu/user/o/omendibl/lammps_allegro/build_2/plumed_build-prefix/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 22
+PLUMED: File suffix: 
+PLUMED: FILE: plumed_MetaD.dat
+PLUMED: Action TORSION
+PLUMED:   with label phi
+PLUMED:   between atoms 5 7 9 15
+PLUMED:   using periodic boundary conditions
+PLUMED: Action TORSION
+PLUMED:   with label psi
+PLUMED:   between atoms 7 9 15 17
+PLUMED:   using periodic boundary conditions
+PLUMED: Action PRINT
+PLUMED:   with label @2
+PLUMED:   with stride 1000
+PLUMED:   with arguments phi psi
+PLUMED:   on file colvar.dat
+PLUMED:   with format  %f
+PLUMED: END FILE: plumed_MetaD.dat
+PLUMED: Timestep: 0.001000
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
