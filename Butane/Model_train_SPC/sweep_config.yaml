@@ -1,0 +1,40 @@
+project: Butane_indp_sweepers_1
+program: nequip-train
+method: bayes
+name: adp_indp_run_1
+description: sweep over loss coefficients and batch size
+
+metric:
+  goal: minimize
+  name: validation_loss
+
+command:
+  - ${env}
+  - ${program}
+  - "But_BoltzDist_SPC.yaml" # Absolute path of your basic config yaml file
+ 
+parameters:
+  batch_size:
+    distribution: int_uniform
+    min: 1
+    max: 10
+  learning_rate:
+    values:
+      - 0.0005
+      - 0.001
+      - 0.0015
+      - 0.002
+  r_max:
+    values:
+      - 4.0
+      - 6.0
+      - 8.0
+      - 10.0
+      - 12.0
+  env_embed_multiplicity:
+    values:
+      - 32
+      - 64
+      - 128
+      - 256
+
