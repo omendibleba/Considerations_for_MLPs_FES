@@ -1,0 +1,80 @@
+log but_BD_dpmd_1ns.log
+
+# Define name of log file 
+#log            butane_C_stability.log
+# Model system
+units           real
+atom_style      atomic
+newton         on   ## off for Nequip
+
+#read_data Butane.data
+read_data       butane.data
+#group           mobile union all
+
+
+#boundary        p p p
+pair_style      allegro  ##nequip 
+
+############ For models trained with ab initio level of accuracy (SPC)###########
+pair_coeff      * * ../Model_train_SPC/Butane_SPC_BoltzDist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_UnivDist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_HL_UnivDist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_HR_UnivDist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_BL_Dist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_BR_Dist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_BHL_Dist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_BHR_Dist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_caseA_Dist.pth C H
+#pair_coeff      * * ../Model_train_SPC/Butane_SPC_caseB_Dist.pth C H
+
+
+############ For models trained with classical level of accuracy (CLC)############
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_BoltzDist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_UnivDist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_HL_UnivDist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_HR_UnivDist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_BL_Dist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_BR_Dist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_BHL_Dist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_BHR_Dist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_caseA_Dist.pth C H
+#pair_coeff      * * ../Model_train_CLC/Butane_CLC_caseB_Dist.pth C H
+
+
+mass            1 12
+mass            2 1.008
+
+neighbor        2.0 bin
+neigh_modify    every 1 delay 0 check yes
+
+
+
+
+# Setup timestep
+timestep        1
+
+# Define thermo output
+#thermo 1000
+thermo          500
+thermo_style    custom step time temp pe ke etotal press density #lx ly lz vol density
+
+
+#Create initial velocity distribution
+velocity	all create 500 432567 dist uniform
+
+## Fix commands
+fix 5 all plumed plumedfile plumed_but.dat outfile plumed.out # Use plumed to analyze CVs
+
+fix 2 all nvt/gpu temp 500 500 100 ## iso 1.0 1.0 1000.0
+
+# Define Dumping 
+#dump 1 all xyz 1000 water255_minimized.xyz
+dump myDump2 all custom 1000 forces.dump id type x y z fx fy fz
+dump Dumpdcd all dcd 1000 but_Boltz_CtC.dcd
+
+restart 2000000 but_dpmd.restart
+
+#run 5000
+#run 5000000
+run 10000000
+
