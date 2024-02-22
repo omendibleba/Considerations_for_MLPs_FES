@@ -1,0 +1,7 @@
+#! FIELDS time phi psi
+#! SET min_phi -pi
+#! SET max_phi pi
+#! SET min_psi -pi
+#! SET max_psi pi
+ 0.000000 -0.010932 0.520287
+ 0.001000 -0.002965 0.518413

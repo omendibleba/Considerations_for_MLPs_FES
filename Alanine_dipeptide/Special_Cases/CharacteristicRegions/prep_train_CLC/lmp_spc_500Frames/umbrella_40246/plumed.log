@@ -1,0 +1,45 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.7.4 (git: Unknown) compiled on Sep 29 2023 at 14:59:45
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /opt/crc/l/lammps/src/lammps-23Jun2022/build_cpu/plumed_build-prefix/lib/plumed
+PLUMED: For installed feature, see /opt/crc/l/lammps/src/lammps-23Jun2022/build_cpu/plumed_build-prefix/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 22
+PLUMED: File suffix: 
+PLUMED: FILE: plumed.dat
+PLUMED: Action TORSION
+PLUMED:   with label phi
+PLUMED:   between atoms 5 7 9 15
+PLUMED:   using periodic boundary conditions
+PLUMED: Action TORSION
+PLUMED:   with label psi
+PLUMED:   between atoms 7 9 15 17
+PLUMED:   using periodic boundary conditions
+PLUMED: Action PRINT
+PLUMED:   with label @2
+PLUMED:   with stride 1
+PLUMED:   with arguments phi psi
+PLUMED:   on file colvar_multi_0.dat
+PLUMED:   with format  %f
+PLUMED: END FILE: plumed.dat
+PLUMED: Timestep: 0.001000
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
+PLUMED:                                               Cycles        Total      Average      Minimum      Maximum
+PLUMED:                                                    1     0.721911     0.721911     0.721911     0.721911
+PLUMED: 1 Prepare dependencies                             2     0.000004     0.000002     0.000001     0.000003
+PLUMED: 2 Sharing data                                     2     0.000027     0.000014     0.000005     0.000022
+PLUMED: 3 Waiting for data                                 2     0.000015     0.000007     0.000002     0.000013
+PLUMED: 4 Calculating (forward loop)                       2     0.000043     0.000022     0.000008     0.000035
+PLUMED: 5 Applying (backward loop)                         2     0.000013     0.000007     0.000004     0.000010
+PLUMED: 6 Update                                           2     0.000491     0.000245     0.000007     0.000483

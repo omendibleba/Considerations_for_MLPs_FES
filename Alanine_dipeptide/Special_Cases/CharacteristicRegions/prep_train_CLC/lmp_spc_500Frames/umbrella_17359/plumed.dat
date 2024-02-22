@@ -1,0 +1,13 @@
+
+# vim:ft=plumed
+#MOLINFO STRUCTURE=alanine_dipep.pdb
+phi: TORSION ATOMS=5,7,9,15      #  Values of pshi are correc compareed to the pdb
+psi: TORSION ATOMS=7,9,15,17      # Values of pshi are correc compareed to the pdb 
+
+#bb: RESTRAINT ARG=phi,psi KAPPA=500.0,500.0 AT=-3.141592653589793,-3.0793828980731637
+#lw: REWEIGHT_BIAS TEMP=500
+
+
+
+
+PRINT ARG=phi,psi STRIDE=1 FILE=colvar_multi_0.dat 
