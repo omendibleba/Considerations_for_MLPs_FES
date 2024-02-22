@@ -1,0 +1,11 @@
+UNITS ENERGY=kcal/mol
+# vim:ft=plumed
+#MOLINFO STRUCTURE=alanine_dipep.pdb
+phi: TORSION ATOMS=5,7,9,15      #  Values of pshi are correc compareed to the pdb
+psi: TORSION ATOMS=7,9,15,17      # Values of pshi are correc compareed to the pdb 
+
+
+
+PRINT ARG=phi,psi, FILE=colvar.dat STRIDE=100 # use this command to write phi and psi on a file named colvar.dat, every 100 steps
+
+

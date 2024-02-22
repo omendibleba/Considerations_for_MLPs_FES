@@ -1,0 +1,72 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.7.2 (git: Unknown) compiled on Feb  6 2023 at 22:38:32
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /home/orlando/Software/lammps-nequip/build_plumed_2/plumed_build-prefix/lib/plumed
+PLUMED: For installed feature, see /home/orlando/Software/lammps-nequip/build_plumed_2/plumed_build-prefix/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 22
+PLUMED: File suffix: 
+PLUMED: FILE: plumed_MetaD.dat
+PLUMED: Action UNITS
+PLUMED:   with label @0
+PLUMED:   length: nm
+PLUMED:   energy: kcal/mol = 4.184 kj/mol
+PLUMED:   time: ps
+PLUMED:   charge: e
+PLUMED:   mass: amu
+PLUMED:   using physical units
+PLUMED:   inside PLUMED, Boltzmann constant is 0.0019872
+PLUMED: Action TORSION
+PLUMED:   with label phi
+PLUMED:   between atoms 5 7 9 15
+PLUMED:   using periodic boundary conditions
+PLUMED: Action TORSION
+PLUMED:   with label psi
+PLUMED:   between atoms 7 9 15 17
+PLUMED:   using periodic boundary conditions
+PLUMED: Action METAD
+PLUMED:   with label metad
+PLUMED:   with arguments phi psi
+PLUMED:   added component to this action:  metad.bias 
+PLUMED:   Gaussian width  0.300000 0.300000  Gaussian height 1.000000
+PLUMED:   Gaussian deposition pace 100
+PLUMED:   Gaussian file HILLS
+PLUMED:   Well-Tempered Bias Factor 6.000000
+PLUMED:   Hills relaxation time (tau) 0.596161
+PLUMED:   KbT 1.192322
+PLUMED:   Grid min -pi -pi
+PLUMED:   Grid max pi pi
+PLUMED:   Grid bin 200 200
+PLUMED:   Grid uses spline interpolation
+PLUMED:   added component to this action:  metad.work 
+PLUMED:   Bibliography [3][4]
+PLUMED: Action PRINT
+PLUMED:   with label @4
+PLUMED:   with stride 100
+PLUMED:   with arguments phi psi metad.bias metad.work
+PLUMED:   on file colvar.dat
+PLUMED:   with format  %f
+PLUMED: END FILE: plumed_MetaD.dat
+PLUMED: Timestep: 0.001000
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED:   [3] Laio and Parrinello, PNAS 99, 12562 (2002)
+PLUMED:   [4] Barducci, Bussi, and Parrinello, Phys. Rev. Lett. 100, 020603 (2008)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
+PLUMED:                                               Cycles        Total      Average      Minimum      Maximum
+PLUMED:                                                    1   130.871081   130.871081   130.871081   130.871081
+PLUMED: 1 Prepare dependencies                      10000001     1.136185     0.000000     0.000000     0.000229
+PLUMED: 2 Sharing data                              10000001     9.689935     0.000001     0.000001     0.000286
+PLUMED: 3 Waiting for data                          10000001     5.363801     0.000001     0.000000     0.000302
+PLUMED: 4 Calculating (forward loop)                10000001    33.703978     0.000003     0.000003     0.000350
+PLUMED: 5 Applying (backward loop)                  10000001    15.312327     0.000002     0.000001     0.000282
+PLUMED: 6 Update                                    10000001    42.722234     0.000004     0.000001     0.008113
