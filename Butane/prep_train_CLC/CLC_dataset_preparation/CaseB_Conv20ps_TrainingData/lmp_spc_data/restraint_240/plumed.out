@@ -1,0 +1,41 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.7.4 (git: Unknown) compiled on Sep 29 2023 at 14:59:45
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /opt/crc/l/lammps/src/lammps-23Jun2022/build_cpu/plumed_build-prefix/lib/plumed
+PLUMED: For installed feature, see /opt/crc/l/lammps/src/lammps-23Jun2022/build_cpu/plumed_build-prefix/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 14
+PLUMED: File suffix: 
+PLUMED: FILE: plumed_but.dat
+PLUMED: Action TORSION
+PLUMED:   with label phi
+PLUMED:   between atoms 1 5 8 11
+PLUMED:   using periodic boundary conditions
+PLUMED: Action PRINT
+PLUMED:   with label @1
+PLUMED:   with stride 1
+PLUMED:   with arguments phi
+PLUMED:   on file dihedral.dat
+PLUMED:   with format  %f
+PLUMED: END FILE: plumed_but.dat
+PLUMED: Timestep: 0.001000
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
+PLUMED:                                               Cycles        Total      Average      Minimum      Maximum
+PLUMED:                                                    1     0.004264     0.004264     0.004264     0.004264
+PLUMED: 1 Prepare dependencies                             2     0.000003     0.000001     0.000001     0.000002
+PLUMED: 2 Sharing data                                     2     0.000020     0.000010     0.000005     0.000016
+PLUMED: 3 Waiting for data                                 2     0.000003     0.000001     0.000001     0.000001
+PLUMED: 4 Calculating (forward loop)                       2     0.000019     0.000009     0.000007     0.000012
+PLUMED: 5 Applying (backward loop)                         2     0.000012     0.000006     0.000005     0.000007
+PLUMED: 6 Update                                           2     0.000303     0.000151     0.000009     0.000294

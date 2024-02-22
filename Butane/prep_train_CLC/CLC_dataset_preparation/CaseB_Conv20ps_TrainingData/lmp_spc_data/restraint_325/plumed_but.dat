@@ -1,0 +1,10 @@
+# vim:ft=plumed
+
+# Compute the torsional angle between atoms 1, 10, 20, and 30.
+# The angle is called "phi1" for future reference.
+phi: TORSION ATOMS=1,5,8,11
+
+
+# Print "phi1" every 1000 steps.
+PRINT ARG=phi STRIDE=1 FILE=dihedral.dat
+

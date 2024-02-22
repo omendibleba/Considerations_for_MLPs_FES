@@ -1,0 +1,121 @@
+LAMMPS (23 Jun 2022)
+  using 1 OpenMP thread(s) per MPI task
+# Model system
+units           real
+atom_style      full
+boundary        p p p
+pair_style      lj/cut/coul/long 12.0
+dielectric      1.0
+pair_modify     tail yes mix geometric
+bond_style      harmonic
+angle_style     harmonic
+dihedral_style  opls
+kspace_style    pppm 1.0e-8
+special_bonds   lj/coul 0.0 0.0 0.5
+neighbor        2.0 bin
+neigh_modify    every 1 delay 0 check yes
+read_data       butane_410.data
+Reading data file ...
+  orthogonal box = (-22.206855 -19.677099 -19.241968) to (18.793145 21.322901 21.758032)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  14 atoms
+  scanning bonds ...
+  4 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  9 = max dihedrals/atom
+  reading bonds ...
+  13 bonds
+  reading angles ...
+  24 angles
+  reading dihedrals ...
+  27 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0.5     
+  special bond factors coul:  0        0        0.5     
+     4 = max # of 1-2 neighbors
+     6 = max # of 1-3 neighbors
+     9 = max # of 1-4 neighbors
+    13 = max # of special neighbors
+  special bonds CPU = 0.000 seconds
+  read_data CPU = 0.004 seconds
+group           mobile union all
+14 atoms in group mobile
+timestep        1
+thermo_style    custom step time temp pe ke etotal enthalpy press density #lx ly lz vol density
+#thermo_modify   line multi
+thermo          1
+thermo_modify   flush yes
+timestep 1
+
+fix 5 all plumed plumedfile plumed_but.dat outfile plumed.out # Use plumed to analyze CVs
+
+fix 1 all nvt temp 373 373 100 # iso 1.0 1.0 1000.0
+#fix ssages all ssages
+
+dump mydumpxyz all xyz 1 traj_nnip.xyz
+dump myDump2 all custom 1 forces.dump id type x y z fx fy fz
+
+dump_modify mydumpxyz sort id
+dump_modify myDump2 sort id
+
+run 1
+PPPM initialization ...
+  using 12-bit tables for long-range coulomb (src/lammps-23Jun2022/src/kspace.cpp:342)
+  G vector (1/distance) = 0.25404746
+  grid = 30 30 30
+  stencil order = 5
+  estimated absolute RMS force accuracy = 3.1790139e-06
+  estimated relative force accuracy = 9.573506e-09
+  using double precision KISS FFT
+  3d grid and FFT values/proc = 50653 27000
+Generated 1 of 1 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update every 1 steps, delay 0 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 14
+  ghost atom cutoff = 14
+  binsize = 7, bins = 6 6 6
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut/coul/long, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+Per MPI rank memory allocation (min/avg/max) = 18.46 | 18.46 | 18.46 Mbytes
+   Step          Time           Temp          PotEng         KinEng         TotEng        Enthalpy        Press         Density    
+         0   0              0              19.062978      0              19.062978     -65.992923     -84.620774      0.0013993427 
+         1   1              61.550762      16.512668      2.3851247      18.897793     -50.014968     -68.560218      0.0013993427 
+Loop time of 0.00623943 on 1 procs for 1 steps with 14 atoms
+
+Performance: 13.847 ns/day, 1.733 hours/ns, 160.271 timesteps/s
+99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 1.1148e-05 | 1.1148e-05 | 1.1148e-05 |   0.0 |  0.18
+Bond    | 1.9339e-05 | 1.9339e-05 | 1.9339e-05 |   0.0 |  0.31
+Kspace  | 0.0060218  | 0.0060218  | 0.0060218  |   0.0 | 96.51
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 1.655e-06  | 1.655e-06  | 1.655e-06  |   0.0 |  0.03
+Output  | 0.00011008 | 0.00011008 | 0.00011008 |   0.0 |  1.76
+Modify  | 6.9767e-05 | 6.9767e-05 | 6.9767e-05 |   0.0 |  1.12
+Other   |            | 5.616e-06  |            |       |  0.09
+
+Nlocal:             14 ave          14 max          14 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:             10 ave          10 max          10 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:             91 ave          91 max          91 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 91
+Ave neighs/atom = 6.5
+Ave special neighs/atom = 9.1428571
+Neighbor list builds = 0
+Dangerous builds = 0
+
+Total wall time: 0:00:00

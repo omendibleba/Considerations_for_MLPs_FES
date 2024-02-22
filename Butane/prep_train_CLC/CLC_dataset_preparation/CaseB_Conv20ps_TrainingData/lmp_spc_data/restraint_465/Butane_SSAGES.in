@@ -1,0 +1,36 @@
+# Model system
+units           real
+atom_style      full
+boundary        p p p
+pair_style      lj/cut/coul/long 12.0
+dielectric      1.0
+pair_modify     tail yes mix geometric
+bond_style      harmonic
+angle_style     harmonic
+dihedral_style  opls
+kspace_style    pppm 1.0e-8
+special_bonds   lj/coul 0.0 0.0 0.5
+neighbor        2.0 bin
+neigh_modify    every 1 delay 0 check yes
+read_data       butane_465.data
+group           mobile union all
+timestep        1
+thermo_style    custom step time temp pe ke etotal enthalpy press density #lx ly lz vol density
+#thermo_modify   line multi
+thermo          1
+thermo_modify   flush yes
+timestep 1
+
+fix 5 all plumed plumedfile plumed_but.dat outfile plumed.out # Use plumed to analyze CVs
+
+fix 1 all nvt temp 373 373 100 # iso 1.0 1.0 1000.0
+#fix ssages all ssages
+
+dump mydumpxyz all xyz 1 traj_nnip.xyz
+dump myDump2 all custom 1 forces.dump id type x y z fx fy fz
+
+dump_modify mydumpxyz sort id
+dump_modify myDump2 sort id
+
+run 1
+
