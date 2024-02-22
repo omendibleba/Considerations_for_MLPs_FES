@@ -1,0 +1,41 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.7.2 (git: Unknown) compiled on May 31 2023 at 10:53:10
+PLUMED: Please cite these papers when using PLUMED [1][2]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /afs/crc.nd.edu/user/o/omendibl/lammps_allegro/build_2/plumed_build-prefix/lib/plumed
+PLUMED: For installed feature, see /afs/crc.nd.edu/user/o/omendibl/lammps_allegro/build_2/plumed_build-prefix/lib/plumed/src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 14
+PLUMED: File suffix: 
+PLUMED: FILE: plumed_but.dat
+PLUMED: Action TORSION
+PLUMED:   with label phi1
+PLUMED:   between atoms 1 5 8 11
+PLUMED:   using periodic boundary conditions
+PLUMED: Action PRINT
+PLUMED:   with label @1
+PLUMED:   with stride 500
+PLUMED:   with arguments phi1
+PLUMED:   on file dihedral.dat
+PLUMED:   with format  %f
+PLUMED: END FILE: plumed_but.dat
+PLUMED: Timestep: 0.001000
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] The PLUMED consortium, Nat. Methods 16, 670 (2019)
+PLUMED:   [2] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
+PLUMED:                                               Cycles        Total      Average      Minimum      Maximum
+PLUMED:                                                    1    25.516785    25.516785    25.516785    25.516785
+PLUMED: 1 Prepare dependencies                       2000001     2.432113     0.000001     0.000000     0.000103
+PLUMED: 2 Sharing data                                  4001     0.078327     0.000020     0.000008     0.000106
+PLUMED: 3 Waiting for data                              4001     0.020403     0.000005     0.000004     0.000044
+PLUMED: 4 Calculating (forward loop)                    4001     0.161747     0.000040     0.000032     0.000140
+PLUMED: 5 Applying (backward loop)                      4001     0.062391     0.000016     0.000005     0.000046
+PLUMED: 6 Update                                        4001     0.121084     0.000030     0.000014     0.002403

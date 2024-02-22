@@ -1,0 +1,5 @@
+LAMMPS (29 Sep 2021 - Update 2)
+  using 1 OpenMP thread(s) per MPI task
+package gpu 0
+package gpu 1
+log but_BD_dpmd_2ns.log
