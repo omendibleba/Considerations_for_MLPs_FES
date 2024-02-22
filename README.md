@@ -15,10 +15,15 @@ The results highlight the extrapolation capabilities of the Allegro model and sh
 ### Usage 
 
 Open the butane or Alanine folder and read the "Full_Tutorial_*.ipynb" notebook.
+
     - Go over the instructions to generate the butane training and test data distributions with the CLM level of theory using LAMMPS[2].
+
     - Then calculate the energy and forces of the generated configurations using CP2K[3].
+
     - Go to the prep_train_CLC and prep_train_SPC folders to train the models. Additionally, evaluate models with test data set.
+
     - Go to the Unbiased_DPMD folder to find the files to run Deep Potential Molecular dynamics (DPMD) unbiased simulations.
+    
     - Go to the Metadynamics_DPMD folder to find the files to run Deep Potential Molecular dynamics (DPMD) metadynamics simulations.
 
 
